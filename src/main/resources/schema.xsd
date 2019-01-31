@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="https://www.example.com"
+        xmlns:ex="https://www.example.com">
+
+    <element name="tariffs">
+        <complexType>
+            <sequence>
+                <element name="tariff"
+                         type="ex:Tariff"
+                         minOccurs="1"
+                         maxOccurs="unbounded" />
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Tariff">
+        <sequence>
+            <element name="name" type="string" />
+            <element name="operator-name">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="Velcom" />
+                        <enumeration value="MTS" />
+                        <enumeration value="Life" />
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="payroll" type="double" />
+            <element name="call-prices" type="ex:Call-prices" />
+            <element name="sms-price" type="double" />
+            <element name="parameters" type="ex:Parameters" />
+        </sequence>
+        <attribute name="id" use="required" type="ID" />
+    </complexType>
+
+    <complexType name="Call-prices">
+        <sequence>
+            <element name="within-network" type="double" />
+            <element name="other-networks" type="double" />
+            <element name="landline-phones" type="double" />
+        </sequence>
+    </complexType>
+
+    <complexType name="Parameters">
+        <sequence>
+            <element name="favorite-numbers" type="int" />
+            <element name="tariffing">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="12-sec" />
+                        <enumeration value="60-sec" />
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="connection-fee" type="double" />
+        </sequence>
+    </complexType>
+</schema>
