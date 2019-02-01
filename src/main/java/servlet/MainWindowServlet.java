@@ -4,11 +4,9 @@ import entity.Tariff;
 import exception.ParsingException;
 import exception.ValidationException;
 import factory.XmlParserFactory;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
-import parser.DomParser;
 import parser.XmlParser;
 import validator.XmlValidator;
+import writer.ParsingResultWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -17,15 +15,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import javax.xml.XMLConstants;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import java.io.*;
-import java.lang.reflect.ParameterizedType;
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/mainWindow")
@@ -61,9 +56,11 @@ public class MainWindowServlet extends HttpServlet {
             String parserName = request.getParameter("parser-type");
             XmlParserFactory factory = XmlParserFactory.getInstance();
             XmlParser parser = factory.getXmlParser(parserName);
-            PrintWriter out = response.getWriter();
             List<Tariff> tariffs = parser.parse(xmlFile);
-            tariffs.forEach(t -> out.println(t.toString()));
+//            request.getRequestDispatcher("WEB-INF/table.jsp").forward(request, response);
+            PrintWriter out = response.getWriter();
+            ParsingResultWriter writer = ParsingResultWriter.getInstance();
+            writer.writeResults(out, tariffs);
         } catch (ValidationException | ParsingException e) {
             request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
         }

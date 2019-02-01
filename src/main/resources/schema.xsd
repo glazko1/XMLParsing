@@ -8,7 +8,7 @@
             <sequence>
                 <element name="tariff"
                          type="ex:Tariff"
-                         minOccurs="1"
+                         minOccurs="2"
                          maxOccurs="unbounded" />
             </sequence>
         </complexType>
@@ -16,7 +16,13 @@
 
     <complexType name="Tariff">
         <sequence>
-            <element name="name" type="string" />
+            <element name="name">
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[A-za-z0-9][A-za-z0-9 ]{1,14}" />
+                    </restriction>
+                </simpleType>
+            </element>
             <element name="operator-name">
                 <simpleType>
                     <restriction base="string">
@@ -26,9 +32,23 @@
                     </restriction>
                 </simpleType>
             </element>
-            <element name="payroll" type="double" />
+            <element name="payroll">
+                <simpleType>
+                    <restriction base="double">
+                        <minInclusive value="0.01" />
+                        <maxInclusive value="80.0" />
+                    </restriction>
+                </simpleType>
+            </element>
             <element name="call-prices" type="ex:Call-prices" />
-            <element name="sms-price" type="double" />
+            <element name="sms-price">
+                <simpleType>
+                    <restriction base="double">
+                        <minInclusive value="0" />
+                        <maxInclusive value="0.5" />
+                    </restriction>
+                </simpleType>
+            </element>
             <element name="parameters" type="ex:Parameters" />
         </sequence>
         <attribute name="id" use="required" type="ID" />
@@ -36,15 +56,36 @@
 
     <complexType name="Call-prices">
         <sequence>
-            <element name="within-network" type="double" />
-            <element name="other-networks" type="double" />
-            <element name="landline-phones" type="double" />
+            <element name="within-network">
+                <simpleType>
+                    <restriction base="double">
+                        <minInclusive value="0" />
+                        <maxInclusive value="1.0" />
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="other-networks" type="double">
+                <simpleType>
+                    <restriction base="double">
+                        <minInclusive value="0" />
+                        <maxInclusive value="2.0" />
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="landline-phones">
+                <simpleType>
+                    <restriction base="double">
+                        <minInclusive value="0" />
+                        <maxInclusive value="3.0" />
+                    </restriction>
+                </simpleType>
+            </element>
         </sequence>
     </complexType>
 
     <complexType name="Parameters">
         <sequence>
-            <element name="favorite-numbers" type="int" />
+            <element name="favorite-numbers" type="int" default="0" />
             <element name="tariffing">
                 <simpleType>
                     <restriction base="string">
@@ -53,7 +94,14 @@
                     </restriction>
                 </simpleType>
             </element>
-            <element name="connection-fee" type="double" />
+            <element name="connection-fee">
+                <simpleType>
+                    <restriction base="double">
+                        <minInclusive value="0" />
+                        <maxInclusive value="25.0" />
+                    </restriction>
+                </simpleType>
+            </element>
         </sequence>
     </complexType>
 </schema>

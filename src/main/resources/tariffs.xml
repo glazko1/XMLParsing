@@ -15,6 +15,7 @@
             <connection-fee>0.00</connection-fee>
         </parameters>
     </tariff>
+
     <tariff id="ID-2">
         <name>4G mini</name>
         <operator-name>MTS</operator-name>
