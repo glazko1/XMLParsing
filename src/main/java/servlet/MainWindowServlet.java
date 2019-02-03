@@ -57,7 +57,6 @@ public class MainWindowServlet extends HttpServlet {
             XmlParserFactory factory = XmlParserFactory.getInstance();
             XmlParser parser = factory.getXmlParser(parserName);
             List<Tariff> tariffs = parser.parse(xmlFile);
-//            request.getRequestDispatcher("WEB-INF/table.jsp").forward(request, response);
             PrintWriter out = response.getWriter();
             ParsingResultWriter writer = ParsingResultWriter.getInstance();
             writer.writeResults(out, tariffs);

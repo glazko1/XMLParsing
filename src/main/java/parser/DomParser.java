@@ -40,7 +40,6 @@ public class DomParser implements XmlParser {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(xmlFile);
             document.getDocumentElement().normalize();
-            Element root = document.getDocumentElement();
             NodeList nodeList = document.getElementsByTagName("tariff");
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);

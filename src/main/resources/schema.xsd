@@ -44,7 +44,6 @@
             <element name="sms-price">
                 <simpleType>
                     <restriction base="double">
-                        <minInclusive value="0" />
                         <maxInclusive value="0.5" />
                     </restriction>
                 </simpleType>
@@ -59,15 +58,13 @@
             <element name="within-network">
                 <simpleType>
                     <restriction base="double">
-                        <minInclusive value="0" />
                         <maxInclusive value="1.0" />
                     </restriction>
                 </simpleType>
             </element>
-            <element name="other-networks" type="double">
+            <element name="other-networks">
                 <simpleType>
                     <restriction base="double">
-                        <minInclusive value="0" />
                         <maxInclusive value="2.0" />
                     </restriction>
                 </simpleType>
@@ -75,7 +72,6 @@
             <element name="landline-phones">
                 <simpleType>
                     <restriction base="double">
-                        <minInclusive value="0" />
                         <maxInclusive value="3.0" />
                     </restriction>
                 </simpleType>
@@ -97,7 +93,6 @@
             <element name="connection-fee">
                 <simpleType>
                     <restriction base="double">
-                        <minInclusive value="0" />
                         <maxInclusive value="25.0" />
                     </restriction>
                 </simpleType>
