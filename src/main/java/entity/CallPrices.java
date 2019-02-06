@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Objects;
+
 public class CallPrices {
 
     private double withinNetwork;
@@ -28,6 +30,21 @@ public class CallPrices {
 
     public void setLandlinePhones(double landlinePhones) {
         this.landlinePhones = landlinePhones;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) { return true; }
+        if (o == null || getClass() != o.getClass()) { return false; }
+        CallPrices that = (CallPrices) o;
+        return Double.compare(that.withinNetwork, withinNetwork) == 0 &&
+                Double.compare(that.otherNetworks, otherNetworks) == 0 &&
+                Double.compare(that.landlinePhones, landlinePhones) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(withinNetwork, otherNetworks, landlinePhones);
     }
 
     @Override

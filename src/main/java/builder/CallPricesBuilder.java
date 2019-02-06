@@ -30,4 +30,16 @@ public class CallPricesBuilder {
         callPrices.setLandlinePhones(landlinePhones);
         return callPrices;
     }
+
+    double getPriceWithinNetwork() {
+        return withinNetwork;
+    }
+
+    double getPriceToOtherNetworks() {
+        return otherNetworks;
+    }
+
+    double getPriceToLandlinePhones() {
+        return landlinePhones;
+    }
 }

@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Objects;
+
 public class Parameters {
 
     private int favoriteNumbers;
@@ -28,6 +30,21 @@ public class Parameters {
 
     public void setConnectionFee(double connectionFee) {
         this.connectionFee = connectionFee;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) { return true; }
+        if (o == null || getClass() != o.getClass()) { return false; }
+        Parameters that = (Parameters) o;
+        return favoriteNumbers == that.favoriteNumbers &&
+                Double.compare(that.connectionFee, connectionFee) == 0 &&
+                tariffingType == that.tariffingType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(favoriteNumbers, tariffingType, connectionFee);
     }
 
     @Override

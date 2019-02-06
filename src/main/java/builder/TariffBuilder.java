@@ -58,4 +58,32 @@ public class TariffBuilder {
         tariff.setParameters(parameters);
         return tariff;
     }
+
+    String getId() {
+        return id;
+    }
+
+    String getName() {
+        return name;
+    }
+
+    String getOperatorName() {
+        return operatorName;
+    }
+
+    double getPayroll() {
+        return payroll;
+    }
+
+    CallPrices getCallPrices() {
+        return callPrices;
+    }
+
+    double getSmsPrice() {
+        return smsPrice;
+    }
+
+    Parameters getParameters() {
+        return parameters;
+    }
 }

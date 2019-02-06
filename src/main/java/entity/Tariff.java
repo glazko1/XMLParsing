@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Objects;
+
 public class Tariff {
 
     private String id;
@@ -64,6 +66,24 @@ public class Tariff {
 
     public void setParameters(Parameters parameters) {
         this.parameters = parameters;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) { return true; }
+        if (o == null || getClass() != o.getClass()) { return false; }
+        Tariff tariff = (Tariff) o;
+        return Double.compare(tariff.payroll, payroll) == 0 &&
+                Double.compare(tariff.smsPrice, smsPrice) == 0 &&
+                Objects.equals(name, tariff.name) &&
+                Objects.equals(operatorName, tariff.operatorName) &&
+                Objects.equals(callPrices, tariff.callPrices) &&
+                Objects.equals(parameters, tariff.parameters);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, operatorName, payroll, callPrices, smsPrice, parameters);
     }
 
     @Override

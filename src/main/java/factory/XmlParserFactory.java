@@ -2,6 +2,7 @@ package factory;
 
 import parser.DomParser;
 import parser.SaxParser;
+import parser.StaxParser;
 import parser.XmlParser;
 
 public class XmlParserFactory {
@@ -21,7 +22,7 @@ public class XmlParserFactory {
             case "SAX":
                 return SaxParser.getInstance();
             case "StAX":
-                break;
+                return StaxParser.getInstance();
             default:
                 break;
         }

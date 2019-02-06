@@ -31,4 +31,16 @@ public class ParametersBuilder {
         parameters.setConnectionFee(connectionFee);
         return parameters;
     }
+
+    int getFavoriteNumbers() {
+        return favoriteNumbers;
+    }
+
+    TariffingType getTariffingType() {
+        return tariffingType;
+    }
+
+    double getConnectionFee() {
+        return connectionFee;
+    }
 }
