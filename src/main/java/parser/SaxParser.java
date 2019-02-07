@@ -8,8 +8,8 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class SaxParser implements XmlParser {
@@ -23,12 +23,12 @@ public class SaxParser implements XmlParser {
     private SaxParser() {}
 
     @Override
-    public List<Tariff> parse(File xmlFile) throws ParsingException {
+    public List<Tariff> parse(InputStream inputStream) throws ParsingException {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser parser = factory.newSAXParser();
             TariffHandler handler = new TariffHandler();
-            parser.parse(xmlFile, handler);
+            parser.parse(inputStream, handler);
             return handler.getTariffs();
         } catch (ParserConfigurationException e) {
             throw new ParsingException("Parser configuration error: " + e.getMessage());

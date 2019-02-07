@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<tariff>
+
+</tariff>
+
+<!--File with errors for test purposes. Do not do like this. Uncomment only for testing!-->
+
+<!--<tc:tariffs xmlns:tc="https://www.example.com" >-->
+    <!--<tariff id="ID-1">-->
+        <!--<name>Comfort</name>-->
+        <!--<operator-name>Velcom</operator-name>-->
+        <!--<payroll>11.43</payroll>-->
+        <!--<call-prices>-->
+            <!--<within-network>0.00</within-network>-->
+            <!--<other-networks>0.15</other-networks>-->
+            <!--<landline-phones>0.20</landline-phones>-->
+        <!--</call-prices>-->
+        <!--<sms-price>0.046</sms-price>-->
+        <!--<parameters>-->
+            <!--<favorite-numbers>5</favorite-numbers>-->
+            <!--<tariffing>60-sec</tariffing>-->
+        <!--<name>4G mini</name>-->
+        <!--<operator-name>MTS</operator-name>-->
+        <!--<payroll>12.60</payroll>-->
+        <!--<call-prices>-->
+            <!--<within-network>0.00</within-network>-->
+            <!--<other-networks>0.08</other-networks>-->
+            <!--<landline-phones>0.12</landline-phones>-->
+        <!--</call-prices>-->
+        <!--<sms-price>0.045</sms-price>-->
+        <!--<parameters>-->
+            <!--<favorite-numbers>3</favorite-numbers>-->
+            <!--<tariffing>60-sec</tariffing>-->
+            <!--<connection-fee>3.00</connection-fee>-->
+        <!--</parameters>-->
+    <!--</tariff>-->
+<!--</tc:tariffs>-->

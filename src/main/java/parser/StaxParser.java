@@ -12,14 +12,8 @@ import exception.ParsingException;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.events.Attribute;
-import javax.xml.stream.events.Characters;
-import javax.xml.stream.events.EndElement;
-import javax.xml.stream.events.StartElement;
-import javax.xml.stream.events.XMLEvent;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import javax.xml.stream.events.*;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -55,12 +49,11 @@ public class StaxParser implements XmlParser {
     private boolean bConnectionFee = false;
 
     @Override
-    public List<Tariff> parse(File xmlFile) throws ParsingException {
+    public List<Tariff> parse(InputStream inputStream) throws ParsingException {
         tariffs = new ArrayList<>();
         try {
             XMLInputFactory factory = XMLInputFactory.newInstance();
-            FileReader reader = new FileReader(xmlFile);
-            XMLEventReader eventReader = factory.createXMLEventReader(reader);
+            XMLEventReader eventReader = factory.createXMLEventReader(inputStream);
             while (eventReader.hasNext()) {
                 XMLEvent event = eventReader.nextEvent();
                 switch (event.getEventType()) {
@@ -75,8 +68,6 @@ public class StaxParser implements XmlParser {
                         break;
                 }
             }
-        } catch (FileNotFoundException e) {
-            throw new ParsingException("File not found: " + e.getMessage());
         } catch (XMLStreamException e) {
             throw new ParsingException("XML Stream error: " + e.getMessage());
         }
@@ -106,7 +97,7 @@ public class StaxParser implements XmlParser {
             bLandlinePhones = true;
         } else if ("sms-price".equals(qName)) {
             bSmsPrice = true;
-        } else if ("favorite-phones".equals(qName)) {
+        } else if ("favorite-numbers".equals(qName)) {
             bFavoriteNumbers = true;
         } else if ("tariffing".equals(qName)) {
             bTariffing = true;
@@ -143,7 +134,12 @@ public class StaxParser implements XmlParser {
             parametersBuilder.hasFavoriteNumbers(Integer.parseInt(data));
             bFavoriteNumbers = false;
         } else if (bTariffing) {
-            TariffingType tariffingType = "SEC_60".equals(data) ? TariffingType.SEC_60 : TariffingType.SEC_12;
+            TariffingType tariffingType;
+            if ("60-sec".equals(data)) {
+                tariffingType = TariffingType.SEC_60;
+            } else {
+                tariffingType = TariffingType.SEC_12;
+            }
             parametersBuilder.withTariffingType(tariffingType);
             bTariffing = false;
         } else if (bConnectionFee) {

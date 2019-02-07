@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
-<%--<button type="button" name="en">ENG</button>--%>
-<%--<button type="button" name="ru">RUS</button>--%>
 <form action="mainWindow" method="post" enctype="multipart/form-data">
     <div class="left-column">
         <fmt:message key = "message.upload_xml" /><br><br>
@@ -28,7 +26,7 @@
                 <option value="StAX">StAX</option>
             </select>
         </label>
-        <input type="submit">
+        <input type="submit" value=<fmt:message key = "button.submit" />>
     </div>
 </form>
 </body>

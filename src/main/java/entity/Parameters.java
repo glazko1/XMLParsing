@@ -16,8 +16,8 @@ public class Parameters {
         this.favoriteNumbers = favoriteNumbers;
     }
 
-    public TariffingType getTariffingType() {
-        return tariffingType;
+    public String getTariffingType() {
+        return tariffingType == TariffingType.SEC_60 ? "60-sec" : "12-sec";
     }
 
     public void setTariffingType(TariffingType tariffingType) {

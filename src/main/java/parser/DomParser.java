@@ -17,8 +17,8 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,12 +33,12 @@ public class DomParser implements XmlParser {
     private DomParser() {}
 
     @Override
-    public List<Tariff> parse(File xmlFile) throws ParsingException {
+    public List<Tariff> parse(InputStream inputStream) throws ParsingException {
         List<Tariff> tariffs = new ArrayList<>();
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse(xmlFile);
+            Document document = builder.parse(inputStream);
             document.getDocumentElement().normalize();
             NodeList nodeList = document.getElementsByTagName("tariff");
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -86,7 +86,7 @@ public class DomParser implements XmlParser {
         return tariffs;
     }
 
-    public String getElement(Element element, String name) {
+    private String getElement(Element element, String name) {
         return element.getElementsByTagName(name)
                 .item(0)
                 .getTextContent();
