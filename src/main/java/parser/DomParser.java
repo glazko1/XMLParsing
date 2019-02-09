@@ -32,9 +32,11 @@ public class DomParser implements XmlParser {
 
     private DomParser() {}
 
+    private List<Tariff> tariffs;
+
     @Override
     public List<Tariff> parse(InputStream inputStream) throws ParsingException {
-        List<Tariff> tariffs = new ArrayList<>();
+        tariffs = new ArrayList<>();
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -43,38 +45,7 @@ public class DomParser implements XmlParser {
             NodeList nodeList = document.getElementsByTagName("tariff");
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
-                Element element = (Element) node;
-                String id = element.getAttribute("id");
-                String name = getElement(element, "name");
-                String operatorName = getElement(element, "operator-name");
-                double payroll = Double.parseDouble(getElement(element, "payroll"));
-                double withinNetwork = Double.parseDouble(getElement(element, "within-network"));
-                double otherNetworks = Double.parseDouble(getElement(element,"other-networks"));
-                double landlinePhones = Double.parseDouble(getElement(element,"landline-phones"));
-                double smsPrice = Double.parseDouble(getElement(element,"sms-price"));
-                int favoriteNumbers = Integer.parseInt(getElement(element, "favorite-numbers"));
-                String tariffing = getElement(element, "tariffing");
-                TariffingType tariffingType = "60-sec".equals(tariffing) ? TariffingType.SEC_60 : TariffingType.SEC_12;
-                double connectionFee = Double.parseDouble(getElement(element, "connection-fee"));
-                CallPricesBuilder callPricesBuilder = new CallPricesBuilder();
-                CallPrices callPrices = callPricesBuilder.withPriceWithinNetwork(withinNetwork)
-                        .withPriceToOtherNetworks(otherNetworks)
-                        .withPriceToLandlinePhones(landlinePhones)
-                        .build();
-                ParametersBuilder parametersBuilder = new ParametersBuilder();
-                Parameters parameters = parametersBuilder.hasFavoriteNumbers(favoriteNumbers)
-                        .withTariffingType(tariffingType)
-                        .withConnectionFee(connectionFee)
-                        .build();
-                TariffBuilder tariffBuilder = new TariffBuilder(id);
-                Tariff tariff = tariffBuilder.withName(name)
-                        .withOperatorName(operatorName)
-                        .withPayroll(payroll)
-                        .withCallPrices(callPrices)
-                        .withSmsPrice(smsPrice)
-                        .withParameters(parameters)
-                        .build();
-                tariffs.add(tariff);
+                parseNode(node);
             }
         } catch (ParserConfigurationException e) {
             throw new ParsingException("Parser configuration error: " + e.getMessage());
@@ -86,9 +57,88 @@ public class DomParser implements XmlParser {
         return tariffs;
     }
 
+    private void parseNode(Node node) {
+        Element element = (Element) node;
+        String id = getId(element);
+        String name = getName(element);
+        String operatorName = getOperatorName(element);
+        double payroll = getPayroll(element);
+        double withinNetwork = getWithinNetwork(element);
+        double otherNetworks = getOtherNetworks(element);
+        double landlinePhones = getLandLinePhones(element);
+        double smsPrice = getSmsPrice(element);
+        int favoriteNumbers = getFavoriteNumbers(element);
+        TariffingType tariffingType = getTariffingType(element);
+        double connectionFee = getConnectionFee(element);
+        CallPricesBuilder callPricesBuilder = new CallPricesBuilder();
+        CallPrices callPrices = callPricesBuilder.withPriceWithinNetwork(withinNetwork)
+                .withPriceToOtherNetworks(otherNetworks)
+                .withPriceToLandlinePhones(landlinePhones)
+                .build();
+        ParametersBuilder parametersBuilder = new ParametersBuilder();
+        Parameters parameters = parametersBuilder.hasFavoriteNumbers(favoriteNumbers)
+                .withTariffingType(tariffingType)
+                .withConnectionFee(connectionFee)
+                .build();
+        TariffBuilder tariffBuilder = new TariffBuilder(id);
+        Tariff tariff = tariffBuilder.withName(name)
+                .withOperatorName(operatorName)
+                .withPayroll(payroll)
+                .withCallPrices(callPrices)
+                .withSmsPrice(smsPrice)
+                .withParameters(parameters)
+                .build();
+        tariffs.add(tariff);
+    }
+
     private String getElement(Element element, String name) {
         return element.getElementsByTagName(name)
                 .item(0)
                 .getTextContent();
+    }
+
+    private String getId(Element element) {
+        return element.getAttribute("id");
+    }
+
+    private String getName(Element element) {
+        return getElement(element, "name");
+    }
+
+    private String getOperatorName(Element element) {
+        return getElement(element, "operator-name");
+    }
+
+    private double getPayroll(Element element) {
+        return Double.parseDouble(getElement(element, "payroll"));
+    }
+
+    private double getWithinNetwork(Element element) {
+        return Double.parseDouble(getElement(element, "within-network"));
+    }
+
+    private double getOtherNetworks(Element element) {
+        return Double.parseDouble(getElement(element, "other-networks"));
+    }
+
+    private double getLandLinePhones(Element element) {
+        return Double.parseDouble(getElement(element, "landline-phones"));
+    }
+
+    private double getSmsPrice(Element element) {
+        return Double.parseDouble(getElement(element, "sms-price"));
+    }
+
+    private int getFavoriteNumbers(Element element) {
+        return Integer.parseInt(getElement(element, "favorite-numbers"));
+    }
+
+    private TariffingType getTariffingType(Element element) {
+        String tariffing = getElement(element, "tariffing");
+        return "60-sec".equals(tariffing) ? TariffingType.SEC_60 : TariffingType.SEC_12;
+    }
+
+    private double getConnectionFee(Element element) {
+        return Double.parseDouble(getElement(element, "connection-fee"));
     }
 }

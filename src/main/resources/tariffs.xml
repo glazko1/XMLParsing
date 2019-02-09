@@ -32,4 +32,242 @@
             <connection-fee>3.00</connection-fee>
         </parameters>
     </tariff>
+
+    <tariff id="ID-3">
+        <name>Social</name>
+        <operator-name>Velcom</operator-name>
+        <payroll>1.58</payroll>
+        <call-prices>
+            <within-network>0.00</within-network>
+            <other-networks>0.09</other-networks>
+            <landline-phones>0.09</landline-phones>
+        </call-prices>
+        <sms-price>0.046</sms-price>
+        <parameters>
+            <favorite-numbers>1</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>0.00</connection-fee>
+        </parameters>
+    </tariff>
+
+    <tariff id="ID-4">
+        <name>XL</name>
+        <operator-name>Life</operator-name>
+        <payroll>15.00</payroll>
+        <call-prices>
+            <within-network>0.00</within-network>
+            <other-networks>0.10</other-networks>
+            <landline-phones>0.12</landline-phones>
+        </call-prices>
+        <sms-price>0.048</sms-price>
+        <parameters>
+            <favorite-numbers>3</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>4.00</connection-fee>
+        </parameters>
+    </tariff>
+
+    <tariff id="ID-5">
+        <name>Super</name>
+        <operator-name>MTS</operator-name>
+        <payroll>10.00</payroll>
+        <call-prices>
+            <within-network>0.00</within-network>
+            <other-networks>0.11</other-networks>
+            <landline-phones>0.13</landline-phones>
+        </call-prices>
+        <sms-price>0.057</sms-price>
+        <parameters>
+            <favorite-numbers>3</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>0.00</connection-fee>
+        </parameters>
+    </tariff>
+
+    <tariff id="ID-6">
+        <name>lemon</name>
+        <operator-name>Velcom</operator-name>
+        <payroll>9.90</payroll>
+        <call-prices>
+            <within-network>0.00</within-network>
+            <other-networks>0.07</other-networks>
+            <landline-phones>0.07</landline-phones>
+        </call-prices>
+        <sms-price>0.046</sms-price>
+        <parameters>
+            <favorite-numbers>3</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>5.00</connection-fee>
+        </parameters>
+    </tariff>
+
+    <tariff id="ID-7">
+        <name>Super WEB 10</name>
+        <operator-name>Velcom</operator-name>
+        <payroll>13.24</payroll>
+        <call-prices>
+            <within-network>0.16</within-network>
+            <other-networks>0.39</other-networks>
+            <landline-phones>0.39</landline-phones>
+        </call-prices>
+        <sms-price>0.046</sms-price>
+        <parameters>
+            <favorite-numbers>3</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>5.00</connection-fee>
+        </parameters>
+    </tariff>
+
+    <tariff id="ID-8">
+        <name>ULTRA</name>
+        <operator-name>MTS</operator-name>
+        <payroll>50.80</payroll>
+        <call-prices>
+            <within-network>0.02</within-network>
+            <other-networks>0.09</other-networks>
+            <landline-phones>0.09</landline-phones>
+        </call-prices>
+        <sms-price>0.045</sms-price>
+        <parameters>
+            <favorite-numbers>5</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>20.00</connection-fee>
+        </parameters>
+    </tariff>
+
+    <!--<tariff id="ID-9">-->
+        <!--<name></name>-->
+        <!--<operator-name></operator-name>-->
+        <!--<payroll></payroll>-->
+        <!--<call-prices>-->
+            <!--<within-network></within-network>-->
+            <!--<other-networks></other-networks>-->
+            <!--<landline-phones></landline-phones>-->
+        <!--</call-prices>-->
+        <!--<sms-price></sms-price>-->
+        <!--<parameters>-->
+            <!--<favorite-numbers></favorite-numbers>-->
+            <!--<tariffing></tariffing>-->
+            <!--<connection-fee></connection-fee>-->
+        <!--</parameters>-->
+    <!--</tariff>-->
+
+    <!--<tariff id="ID-10">-->
+        <!--<name></name>-->
+        <!--<operator-name></operator-name>-->
+        <!--<payroll></payroll>-->
+        <!--<call-prices>-->
+            <!--<within-network></within-network>-->
+            <!--<other-networks></other-networks>-->
+            <!--<landline-phones></landline-phones>-->
+        <!--</call-prices>-->
+        <!--<sms-price></sms-price>-->
+        <!--<parameters>-->
+            <!--<favorite-numbers></favorite-numbers>-->
+            <!--<tariffing></tariffing>-->
+            <!--<connection-fee></connection-fee>-->
+        <!--</parameters>-->
+    <!--</tariff>-->
+
+    <!--<tariff id="ID-11">-->
+        <!--<name></name>-->
+        <!--<operator-name></operator-name>-->
+        <!--<payroll></payroll>-->
+        <!--<call-prices>-->
+            <!--<within-network></within-network>-->
+            <!--<other-networks></other-networks>-->
+            <!--<landline-phones></landline-phones>-->
+        <!--</call-prices>-->
+        <!--<sms-price></sms-price>-->
+        <!--<parameters>-->
+            <!--<favorite-numbers></favorite-numbers>-->
+            <!--<tariffing></tariffing>-->
+            <!--<connection-fee></connection-fee>-->
+        <!--</parameters>-->
+    <!--</tariff>-->
+
+    <!--<tariff id="ID-12">-->
+        <!--<name></name>-->
+        <!--<operator-name></operator-name>-->
+        <!--<payroll></payroll>-->
+        <!--<call-prices>-->
+            <!--<within-network></within-network>-->
+            <!--<other-networks></other-networks>-->
+            <!--<landline-phones></landline-phones>-->
+        <!--</call-prices>-->
+        <!--<sms-price></sms-price>-->
+        <!--<parameters>-->
+            <!--<favorite-numbers></favorite-numbers>-->
+            <!--<tariffing></tariffing>-->
+            <!--<connection-fee></connection-fee>-->
+        <!--</parameters>-->
+    <!--</tariff>-->
+
+    <!--<tariff id="ID-13">-->
+        <!--<name></name>-->
+        <!--<operator-name></operator-name>-->
+        <!--<payroll></payroll>-->
+        <!--<call-prices>-->
+            <!--<within-network></within-network>-->
+            <!--<other-networks></other-networks>-->
+            <!--<landline-phones></landline-phones>-->
+        <!--</call-prices>-->
+        <!--<sms-price></sms-price>-->
+        <!--<parameters>-->
+            <!--<favorite-numbers></favorite-numbers>-->
+            <!--<tariffing></tariffing>-->
+            <!--<connection-fee></connection-fee>-->
+        <!--</parameters>-->
+    <!--</tariff>-->
+
+    <!--<tariff id="ID-14">-->
+        <!--<name></name>-->
+        <!--<operator-name></operator-name>-->
+        <!--<payroll></payroll>-->
+        <!--<call-prices>-->
+            <!--<within-network></within-network>-->
+            <!--<other-networks></other-networks>-->
+            <!--<landline-phones></landline-phones>-->
+        <!--</call-prices>-->
+        <!--<sms-price></sms-price>-->
+        <!--<parameters>-->
+            <!--<favorite-numbers></favorite-numbers>-->
+            <!--<tariffing></tariffing>-->
+            <!--<connection-fee></connection-fee>-->
+        <!--</parameters>-->
+    <!--</tariff>-->
+
+    <!--<tariff id="ID-15">-->
+        <!--<name></name>-->
+        <!--<operator-name></operator-name>-->
+        <!--<payroll></payroll>-->
+        <!--<call-prices>-->
+            <!--<within-network></within-network>-->
+            <!--<other-networks></other-networks>-->
+            <!--<landline-phones></landline-phones>-->
+        <!--</call-prices>-->
+        <!--<sms-price></sms-price>-->
+        <!--<parameters>-->
+            <!--<favorite-numbers></favorite-numbers>-->
+            <!--<tariffing></tariffing>-->
+            <!--<connection-fee></connection-fee>-->
+        <!--</parameters>-->
+    <!--</tariff>-->
+
+    <!--<tariff id="ID-16">-->
+        <!--<name></name>-->
+        <!--<operator-name></operator-name>-->
+        <!--<payroll></payroll>-->
+        <!--<call-prices>-->
+            <!--<within-network></within-network>-->
+            <!--<other-networks></other-networks>-->
+            <!--<landline-phones></landline-phones>-->
+        <!--</call-prices>-->
+        <!--<sms-price></sms-price>-->
+        <!--<parameters>-->
+            <!--<favorite-numbers></favorite-numbers>-->
+            <!--<tariffing></tariffing>-->
+            <!--<connection-fee></connection-fee>-->
+        <!--</parameters>-->
+    <!--</tariff>-->
 </tc:tariffs>

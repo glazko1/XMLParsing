@@ -6,12 +6,24 @@ import builder.TariffBuilder;
 import entity.CallPrices;
 import entity.Parameters;
 import entity.Tariff;
+import entity.TariffParameter;
 import entity.TariffingType;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static entity.TariffParameter.CONNECTION_FEE;
+import static entity.TariffParameter.FAVORITE_NUMBERS;
+import static entity.TariffParameter.LANDLINE_PHONES;
+import static entity.TariffParameter.NAME;
+import static entity.TariffParameter.OPERATOR_NAME;
+import static entity.TariffParameter.OTHER_NETWORKS;
+import static entity.TariffParameter.PAYROLL;
+import static entity.TariffParameter.SMS_PRICE;
+import static entity.TariffParameter.TARIFFING;
+import static entity.TariffParameter.WITHIN_NETWORK;
 
 public class TariffHandler extends DefaultHandler {
 
@@ -21,16 +33,7 @@ public class TariffHandler extends DefaultHandler {
     private ParametersBuilder parametersBuilder;
     private StringBuilder data;
 
-    private boolean bName = false;
-    private boolean bOperatorName = false;
-    private boolean bPayroll = false;
-    private boolean bWithinNetwork = false;
-    private boolean bOtherNetworks = false;
-    private boolean bLandlinePhones = false;
-    private boolean bSmsPrice = false;
-    private boolean bFavoriteNumbers = false;
-    private boolean bTariffing = false;
-    private boolean bConnectionFee = false;
+    private TariffParameter currentParameter;
 
     public List<Tariff> getTariffs() {
         return tariffs;
@@ -46,34 +49,34 @@ public class TariffHandler extends DefaultHandler {
                 parametersBuilder = new ParametersBuilder();
                 break;
             case "name":
-                bName = true;
+                currentParameter = NAME;
                 break;
             case "operator-name":
-                bOperatorName = true;
+                currentParameter = OPERATOR_NAME;
                 break;
             case "payroll":
-                bPayroll = true;
+                currentParameter = PAYROLL;
                 break;
             case "within-network":
-                bWithinNetwork = true;
+                currentParameter = WITHIN_NETWORK;
                 break;
             case "other-networks":
-                bOtherNetworks = true;
+                currentParameter = OTHER_NETWORKS;
                 break;
             case "landline-phones":
-                bLandlinePhones = true;
+                currentParameter = LANDLINE_PHONES;
                 break;
             case "sms-price":
-                bSmsPrice = true;
+                currentParameter = SMS_PRICE;
                 break;
             case "favorite-numbers":
-                bFavoriteNumbers = true;
+                currentParameter = FAVORITE_NUMBERS;
                 break;
             case "tariffing":
-                bTariffing = true;
+                currentParameter = TARIFFING;
                 break;
             case "connection-fee":
-                bConnectionFee = true;
+                currentParameter = CONNECTION_FEE;
                 break;
             default:
                 break;
@@ -88,37 +91,40 @@ public class TariffHandler extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) {
-        if (bName) {
-            tariffBuilder.withName(data.toString());
-            bName = false;
-        } else if (bOperatorName) {
-            tariffBuilder.withOperatorName(data.toString());
-            bOperatorName = false;
-        } else if (bPayroll) {
-            tariffBuilder.withPayroll(Double.parseDouble(data.toString()));
-            bPayroll = false;
-        } else if (bWithinNetwork) {
-            callPricesBuilder.withPriceWithinNetwork(Double.parseDouble(data.toString()));
-            bWithinNetwork = false;
-        } else if (bOtherNetworks) {
-            callPricesBuilder.withPriceToOtherNetworks(Double.parseDouble(data.toString()));
-            bOtherNetworks = false;
-        } else if (bLandlinePhones) {
-            callPricesBuilder.withPriceToLandlinePhones(Double.parseDouble(data.toString()));
-            bLandlinePhones = false;
-        } else if (bSmsPrice) {
-            tariffBuilder.withSmsPrice(Double.parseDouble(data.toString()));
-            bSmsPrice = false;
-        } else if (bFavoriteNumbers) {
-            parametersBuilder.hasFavoriteNumbers(Integer.parseInt(data.toString()));
-            bFavoriteNumbers = false;
-        } else if (bTariffing) {
-            TariffingType tariffingType = "60-sec".equals(data.toString()) ? TariffingType.SEC_60 : TariffingType.SEC_12;
-            parametersBuilder.withTariffingType(tariffingType);
-            bTariffing = false;
-        } else if (bConnectionFee) {
-            parametersBuilder.withConnectionFee(Double.parseDouble(data.toString()));
-            bConnectionFee = false;
+        switch (currentParameter) {
+            case NAME:
+                tariffBuilder.withName(data.toString());
+                break;
+            case OPERATOR_NAME:
+                tariffBuilder.withOperatorName(data.toString());
+                break;
+            case PAYROLL:
+                tariffBuilder.withPayroll(Double.parseDouble(data.toString()));
+                break;
+            case WITHIN_NETWORK:
+                callPricesBuilder.withPriceWithinNetwork(Double.parseDouble(data.toString()));
+                break;
+            case OTHER_NETWORKS:
+                callPricesBuilder.withPriceToOtherNetworks(Double.parseDouble(data.toString()));
+                break;
+            case LANDLINE_PHONES:
+                callPricesBuilder.withPriceToLandlinePhones(Double.parseDouble(data.toString()));
+                break;
+            case SMS_PRICE:
+                tariffBuilder.withSmsPrice(Double.parseDouble(data.toString()));
+                break;
+            case FAVORITE_NUMBERS:
+                parametersBuilder.hasFavoriteNumbers(Integer.parseInt(data.toString()));
+                break;
+            case TARIFFING:
+                TariffingType tariffingType = "60-sec".equals(data.toString()) ? TariffingType.SEC_60 : TariffingType.SEC_12;
+                parametersBuilder.withTariffingType(tariffingType);
+                break;
+            case CONNECTION_FEE:
+                parametersBuilder.withConnectionFee(Double.parseDouble(data.toString()));
+                break;
+            default:
+                break;
         }
         if ("tariff".equals(qName)) {
             CallPrices callPrices = callPricesBuilder.build();

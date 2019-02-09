@@ -30,7 +30,7 @@ public class XmlValidatorTest {
         InputStream xmlInputStream = new FileInputStream("src/main/resources/badTariffs.xml");
         InputStream xsdInputStream = new FileInputStream("src/main/resources/schema.xsd");
         //when
-        boolean result = validator.validate(xmlInputStream, xsdInputStream);
+        validator.validate(xmlInputStream, xsdInputStream);
         //then
         //expecting ValidationException
     }

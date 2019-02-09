@@ -3,10 +3,7 @@ package parser;
 import builder.CallPricesBuilder;
 import builder.ParametersBuilder;
 import builder.TariffBuilder;
-import entity.CallPrices;
-import entity.Parameters;
-import entity.Tariff;
-import entity.TariffingType;
+import entity.*;
 import exception.ParsingException;
 
 import javax.xml.stream.XMLEventReader;
@@ -18,6 +15,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static entity.TariffParameter.CONNECTION_FEE;
+import static entity.TariffParameter.FAVORITE_NUMBERS;
+import static entity.TariffParameter.FREE;
+import static entity.TariffParameter.LANDLINE_PHONES;
+import static entity.TariffParameter.NAME;
+import static entity.TariffParameter.OPERATOR_NAME;
+import static entity.TariffParameter.OTHER_NETWORKS;
+import static entity.TariffParameter.PAYROLL;
+import static entity.TariffParameter.SMS_PRICE;
+import static entity.TariffParameter.TARIFFING;
+import static entity.TariffParameter.WITHIN_NETWORK;
 import static javax.xml.stream.XMLStreamConstants.CHARACTERS;
 import static javax.xml.stream.XMLStreamConstants.END_ELEMENT;
 import static javax.xml.stream.XMLStreamConstants.START_ELEMENT;
@@ -37,16 +45,7 @@ public class StaxParser implements XmlParser {
     private CallPricesBuilder callPricesBuilder;
     private ParametersBuilder parametersBuilder;
 
-    private boolean bName = false;
-    private boolean bOperatorName = false;
-    private boolean bPayroll = false;
-    private boolean bWithinNetwork = false;
-    private boolean bOtherNetworks = false;
-    private boolean bLandlinePhones = false;
-    private boolean bSmsPrice = false;
-    private boolean bFavoriteNumbers = false;
-    private boolean bTariffing = false;
-    private boolean bConnectionFee = false;
+    private TariffParameter currentParameter = FREE;
 
     @Override
     public List<Tariff> parse(InputStream inputStream) throws ParsingException {
@@ -77,75 +76,93 @@ public class StaxParser implements XmlParser {
     private void startElement(XMLEvent event) {
         StartElement startElement = event.asStartElement();
         String qName = startElement.getName().getLocalPart();
-        if ("tariff".equals(qName)) {
-            Iterator<Attribute> iterator = startElement.getAttributes();
-            String id = iterator.next().getValue();
-            tariffBuilder = new TariffBuilder(id);
-            callPricesBuilder = new CallPricesBuilder();
-            parametersBuilder = new ParametersBuilder();
-        } else if ("name".equals(qName)) {
-            bName = true;
-        } else if ("operator-name".equals(qName)) {
-            bOperatorName = true;
-        } else if ("payroll".equals(qName)) {
-            bPayroll = true;
-        } else if ("within-network".equals(qName)) {
-            bWithinNetwork = true;
-        } else if ("other-networks".equals(qName)) {
-            bOtherNetworks = true;
-        } else if ("landline-phones".equals(qName)) {
-            bLandlinePhones = true;
-        } else if ("sms-price".equals(qName)) {
-            bSmsPrice = true;
-        } else if ("favorite-numbers".equals(qName)) {
-            bFavoriteNumbers = true;
-        } else if ("tariffing".equals(qName)) {
-            bTariffing = true;
-        } else if ("connection-fee".equals(qName)) {
-            bConnectionFee = true;
+        switch (qName) {
+            case "tariff":
+                Iterator<Attribute> iterator = startElement.getAttributes();
+                String id = iterator.next().getValue();
+                tariffBuilder = new TariffBuilder(id);
+                callPricesBuilder = new CallPricesBuilder();
+                parametersBuilder = new ParametersBuilder();
+                break;
+            case "name":
+                currentParameter = NAME;
+                break;
+            case "operator-name":
+                currentParameter = OPERATOR_NAME;
+                break;
+            case "payroll":
+                currentParameter = PAYROLL;
+                break;
+            case "within-network":
+                currentParameter = WITHIN_NETWORK;
+                break;
+            case "other-networks":
+                currentParameter = OTHER_NETWORKS;
+                break;
+            case "landline-phones":
+                currentParameter = LANDLINE_PHONES;
+                break;
+            case "sms-price":
+                currentParameter = SMS_PRICE;
+                break;
+            case "favorite-numbers":
+                currentParameter = FAVORITE_NUMBERS;
+                break;
+            case "tariffing":
+                currentParameter = TARIFFING;
+                break;
+            case "connection-fee":
+                currentParameter = CONNECTION_FEE;
+                break;
+            default:
+                break;
         }
     }
 
     private void characters(XMLEvent event) {
         Characters characters = event.asCharacters();
         String data = characters.getData();
-        if (bName) {
-            tariffBuilder.withName(data);
-            bName = false;
-        } else if (bOperatorName) {
-            tariffBuilder.withOperatorName(data);
-            bOperatorName = false;
-        } else if (bPayroll) {
-            tariffBuilder.withPayroll(Double.parseDouble(data));
-            bPayroll = false;
-        } else if (bWithinNetwork) {
-            callPricesBuilder.withPriceWithinNetwork(Double.parseDouble(data));
-            bWithinNetwork = false;
-        } else if (bOtherNetworks) {
-            callPricesBuilder.withPriceToOtherNetworks(Double.parseDouble(data));
-            bOtherNetworks = false;
-        } else if (bLandlinePhones) {
-            callPricesBuilder.withPriceToLandlinePhones(Double.parseDouble(data));
-            bLandlinePhones = false;
-        } else if (bSmsPrice) {
-            tariffBuilder.withSmsPrice(Double.parseDouble(data));
-            bSmsPrice = false;
-        } else if (bFavoriteNumbers) {
-            parametersBuilder.hasFavoriteNumbers(Integer.parseInt(data));
-            bFavoriteNumbers = false;
-        } else if (bTariffing) {
-            TariffingType tariffingType;
-            if ("60-sec".equals(data)) {
-                tariffingType = TariffingType.SEC_60;
-            } else {
-                tariffingType = TariffingType.SEC_12;
-            }
-            parametersBuilder.withTariffingType(tariffingType);
-            bTariffing = false;
-        } else if (bConnectionFee) {
-            parametersBuilder.withConnectionFee(Double.parseDouble(data));
-            bConnectionFee = false;
+        switch (currentParameter) {
+            case NAME:
+                tariffBuilder.withName(data);
+                break;
+            case OPERATOR_NAME:
+                tariffBuilder.withOperatorName(data);
+                break;
+            case PAYROLL:
+                tariffBuilder.withPayroll(Double.parseDouble(data));
+                break;
+            case WITHIN_NETWORK:
+                callPricesBuilder.withPriceWithinNetwork(Double.parseDouble(data));
+                break;
+            case OTHER_NETWORKS:
+                callPricesBuilder.withPriceToOtherNetworks(Double.parseDouble(data));
+                break;
+            case LANDLINE_PHONES:
+                callPricesBuilder.withPriceToLandlinePhones(Double.parseDouble(data));
+                break;
+            case SMS_PRICE:
+                tariffBuilder.withSmsPrice(Double.parseDouble(data));
+                break;
+            case FAVORITE_NUMBERS:
+                parametersBuilder.hasFavoriteNumbers(Integer.parseInt(data));
+                break;
+            case TARIFFING:
+                TariffingType tariffingType;
+                if ("60-sec".equals(data)) {
+                    tariffingType = TariffingType.SEC_60;
+                } else {
+                    tariffingType = TariffingType.SEC_12;
+                }
+                parametersBuilder.withTariffingType(tariffingType);
+                break;
+            case CONNECTION_FEE:
+                parametersBuilder.withConnectionFee(Double.parseDouble(data));
+                break;
+            default:
+                break;
         }
+        currentParameter = FREE;
     }
 
     private void endElement(XMLEvent event) {

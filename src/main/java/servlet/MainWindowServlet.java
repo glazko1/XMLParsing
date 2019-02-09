@@ -4,6 +4,8 @@ import entity.Tariff;
 import exception.ParsingException;
 import exception.ValidationException;
 import factory.XmlParserFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import parser.XmlParser;
 import validator.XmlValidator;
 
@@ -21,6 +23,8 @@ import java.util.List;
 @WebServlet("/mainWindow")
 @MultipartConfig
 public class MainWindowServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LogManager.getLogger(MainWindowServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,6 +51,7 @@ public class MainWindowServlet extends HttpServlet {
             request.setAttribute("tariffs", tariffs);
             request.getRequestDispatcher("WEB-INF/table.jsp").forward(request, response);
         } catch (ValidationException | ParsingException e) {
+            LOGGER.error(e.getMessage());
             request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
         }
     }
