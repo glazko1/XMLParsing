@@ -35,6 +35,7 @@ public class StaxParserTest {
                 .hasFavoriteNumbers(3)
                 .withTariffingType(TariffingType.SEC_60)
                 .withConnectionFee(0)
+                .withLaunchDate("2017-04-19")
                 .build();
         Tariff tariff1 = new TariffBuilder("ID-5")
                 .withName("Super")
@@ -53,6 +54,7 @@ public class StaxParserTest {
                 .hasFavoriteNumbers(3)
                 .withTariffingType(TariffingType.SEC_60)
                 .withConnectionFee(5)
+                .withLaunchDate("2018-01-15")
                 .build();
         Tariff tariff2 = new TariffBuilder("ID-6")
                 .withName("lemon")

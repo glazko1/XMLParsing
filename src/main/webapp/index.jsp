@@ -25,6 +25,13 @@
                 <option value="SAX">SAX</option>
                 <option value="StAX">StAX</option>
             </select>
+        </label><br><br>
+        <fmt:message key = "message.choose_language" /><br><br>
+        <label>
+            <select name="table-language">
+                <option value="RUS">RUS</option>
+                <option value="ENG">ENG</option>
+            </select>
         </label>
         <input type="submit" value=<fmt:message key = "button.submit" />>
     </div>

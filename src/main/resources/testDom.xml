@@ -13,6 +13,7 @@
             <favorite-numbers>5</favorite-numbers>
             <tariffing>60-sec</tariffing>
             <connection-fee>0.00</connection-fee>
+            <launch-date>2017-02-10</launch-date>
         </parameters>
     </tariff>
 
@@ -30,6 +31,7 @@
             <favorite-numbers>3</favorite-numbers>
             <tariffing>60-sec</tariffing>
             <connection-fee>3.00</connection-fee>
+            <launch-date>2017-05-19</launch-date>
         </parameters>
     </tariff>
 </tc:tariffs>

@@ -11,5 +11,6 @@ public enum TariffParameter {
     FAVORITE_NUMBERS,
     TARIFFING,
     CONNECTION_FEE,
+    LAUNCH_DATE,
     FREE
 }

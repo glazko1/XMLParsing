@@ -13,6 +13,7 @@
             <favorite-numbers>5</favorite-numbers>
             <tariffing>60-sec</tariffing>
             <connection-fee>0.00</connection-fee>
+            <launch-date>2017-02-10</launch-date>
         </parameters>
     </tariff>
 
@@ -30,6 +31,7 @@
             <favorite-numbers>3</favorite-numbers>
             <tariffing>60-sec</tariffing>
             <connection-fee>3.00</connection-fee>
+            <launch-date>2017-05-19</launch-date>
         </parameters>
     </tariff>
 
@@ -47,6 +49,7 @@
             <favorite-numbers>1</favorite-numbers>
             <tariffing>60-sec</tariffing>
             <connection-fee>0.00</connection-fee>
+            <launch-date>2018-01-07</launch-date>
         </parameters>
     </tariff>
 
@@ -64,6 +67,7 @@
             <favorite-numbers>3</favorite-numbers>
             <tariffing>60-sec</tariffing>
             <connection-fee>4.00</connection-fee>
+            <launch-date>2016-11-29</launch-date>
         </parameters>
     </tariff>
 
@@ -81,6 +85,7 @@
             <favorite-numbers>3</favorite-numbers>
             <tariffing>60-sec</tariffing>
             <connection-fee>0.00</connection-fee>
+            <launch-date>2017-04-19</launch-date>
         </parameters>
     </tariff>
 
@@ -98,6 +103,7 @@
             <favorite-numbers>3</favorite-numbers>
             <tariffing>60-sec</tariffing>
             <connection-fee>5.00</connection-fee>
+            <launch-date>2018-01-15</launch-date>
         </parameters>
     </tariff>
 
@@ -115,6 +121,7 @@
             <favorite-numbers>3</favorite-numbers>
             <tariffing>60-sec</tariffing>
             <connection-fee>5.00</connection-fee>
+            <launch-date>2015-11-02</launch-date>
         </parameters>
     </tariff>
 
@@ -131,143 +138,152 @@
         <parameters>
             <favorite-numbers>5</favorite-numbers>
             <tariffing>60-sec</tariffing>
-            <connection-fee>20.00</connection-fee>
+            <connection-fee>50.00</connection-fee>
+            <launch-date>2017-03-14</launch-date>
         </parameters>
     </tariff>
 
-    <!--<tariff id="ID-9">-->
-        <!--<name></name>-->
-        <!--<operator-name></operator-name>-->
-        <!--<payroll></payroll>-->
-        <!--<call-prices>-->
-            <!--<within-network></within-network>-->
-            <!--<other-networks></other-networks>-->
-            <!--<landline-phones></landline-phones>-->
-        <!--</call-prices>-->
-        <!--<sms-price></sms-price>-->
-        <!--<parameters>-->
-            <!--<favorite-numbers></favorite-numbers>-->
-            <!--<tariffing></tariffing>-->
-            <!--<connection-fee></connection-fee>-->
-        <!--</parameters>-->
-    <!--</tariff>-->
+    <tariff id="ID-9">
+        <name>Start</name>
+        <operator-name>Velcom</operator-name>
+        <payroll>7.90</payroll>
+        <call-prices>
+            <within-network>0.00</within-network>
+            <other-networks>0.07</other-networks>
+            <landline-phones>0.08</landline-phones>
+        </call-prices>
+        <sms-price>0.07</sms-price>
+        <parameters>
+            <favorite-numbers>3</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>5.00</connection-fee>
+            <launch-date>2017-12-06</launch-date>
+        </parameters>
+    </tariff>
 
-    <!--<tariff id="ID-10">-->
-        <!--<name></name>-->
-        <!--<operator-name></operator-name>-->
-        <!--<payroll></payroll>-->
-        <!--<call-prices>-->
-            <!--<within-network></within-network>-->
-            <!--<other-networks></other-networks>-->
-            <!--<landline-phones></landline-phones>-->
-        <!--</call-prices>-->
-        <!--<sms-price></sms-price>-->
-        <!--<parameters>-->
-            <!--<favorite-numbers></favorite-numbers>-->
-            <!--<tariffing></tariffing>-->
-            <!--<connection-fee></connection-fee>-->
-        <!--</parameters>-->
-    <!--</tariff>-->
+    <tariff id="ID-10">
+        <name>Easy To Say</name>
+        <operator-name>MTS</operator-name>
+        <payroll>0.62</payroll>
+        <call-prices>
+            <within-network>0.08</within-network>
+            <other-networks>0.16</other-networks>
+            <landline-phones>0.18</landline-phones>
+        </call-prices>
+        <sms-price>0.022</sms-price>
+        <parameters>
+            <favorite-numbers>3</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>0.00</connection-fee>
+            <launch-date>2019-02-05</launch-date>
+        </parameters>
+    </tariff>
 
-    <!--<tariff id="ID-11">-->
-        <!--<name></name>-->
-        <!--<operator-name></operator-name>-->
-        <!--<payroll></payroll>-->
-        <!--<call-prices>-->
-            <!--<within-network></within-network>-->
-            <!--<other-networks></other-networks>-->
-            <!--<landline-phones></landline-phones>-->
-        <!--</call-prices>-->
-        <!--<sms-price></sms-price>-->
-        <!--<parameters>-->
-            <!--<favorite-numbers></favorite-numbers>-->
-            <!--<tariffing></tariffing>-->
-            <!--<connection-fee></connection-fee>-->
-        <!--</parameters>-->
-    <!--</tariff>-->
+    <tariff id="ID-11">
+        <name>Guest 30</name>
+        <operator-name>MTS</operator-name>
+        <payroll>13.86</payroll>
+        <call-prices>
+            <within-network>0.005</within-network>
+            <other-networks>0.08</other-networks>
+            <landline-phones>0.15</landline-phones>
+        </call-prices>
+        <sms-price>0.057</sms-price>
+        <parameters>
+            <favorite-numbers>0</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>14.00</connection-fee>
+            <launch-date>2016-04-15</launch-date>
+        </parameters>
+    </tariff>
 
-    <!--<tariff id="ID-12">-->
-        <!--<name></name>-->
-        <!--<operator-name></operator-name>-->
-        <!--<payroll></payroll>-->
-        <!--<call-prices>-->
-            <!--<within-network></within-network>-->
-            <!--<other-networks></other-networks>-->
-            <!--<landline-phones></landline-phones>-->
-        <!--</call-prices>-->
-        <!--<sms-price></sms-price>-->
-        <!--<parameters>-->
-            <!--<favorite-numbers></favorite-numbers>-->
-            <!--<tariffing></tariffing>-->
-            <!--<connection-fee></connection-fee>-->
-        <!--</parameters>-->
-    <!--</tariff>-->
+    <tariff id="ID-12">
+        <name>Business Class</name>
+        <operator-name>Velcom</operator-name>
+        <payroll>115.40</payroll>
+        <call-prices>
+            <within-network>0.00</within-network>
+            <other-networks>0.00</other-networks>
+            <landline-phones>0.00</landline-phones>
+        </call-prices>
+        <sms-price>0.046</sms-price>
+        <parameters>
+            <favorite-numbers>8</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>45.00</connection-fee>
+            <launch-date>2018-07-01</launch-date>
+        </parameters>
+    </tariff>
 
-    <!--<tariff id="ID-13">-->
-        <!--<name></name>-->
-        <!--<operator-name></operator-name>-->
-        <!--<payroll></payroll>-->
-        <!--<call-prices>-->
-            <!--<within-network></within-network>-->
-            <!--<other-networks></other-networks>-->
-            <!--<landline-phones></landline-phones>-->
-        <!--</call-prices>-->
-        <!--<sms-price></sms-price>-->
-        <!--<parameters>-->
-            <!--<favorite-numbers></favorite-numbers>-->
-            <!--<tariffing></tariffing>-->
-            <!--<connection-fee></connection-fee>-->
-        <!--</parameters>-->
-    <!--</tariff>-->
+    <tariff id="ID-13">
+        <name>Hello Internet</name>
+        <operator-name>Velcom</operator-name>
+        <payroll>0.00</payroll>
+        <call-prices>
+            <within-network>0.07</within-network>
+            <other-networks>0.07</other-networks>
+            <landline-phones>0.07</landline-phones>
+        </call-prices>
+        <sms-price>0.046</sms-price>
+        <parameters>
+            <favorite-numbers>3</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>10.00</connection-fee>
+            <launch-date>2019-01-05</launch-date>
+        </parameters>
+    </tariff>
 
-    <!--<tariff id="ID-14">-->
-        <!--<name></name>-->
-        <!--<operator-name></operator-name>-->
-        <!--<payroll></payroll>-->
-        <!--<call-prices>-->
-            <!--<within-network></within-network>-->
-            <!--<other-networks></other-networks>-->
-            <!--<landline-phones></landline-phones>-->
-        <!--</call-prices>-->
-        <!--<sms-price></sms-price>-->
-        <!--<parameters>-->
-            <!--<favorite-numbers></favorite-numbers>-->
-            <!--<tariffing></tariffing>-->
-            <!--<connection-fee></connection-fee>-->
-        <!--</parameters>-->
-    <!--</tariff>-->
+    <tariff id="ID-14">
+        <name>Absolute</name>
+        <operator-name>MTS</operator-name>
+        <payroll>137.50</payroll>
+        <call-prices>
+            <within-network>0.00</within-network>
+            <other-networks>0.00</other-networks>
+            <landline-phones>0.00</landline-phones>
+        </call-prices>
+        <sms-price>0.045</sms-price>
+        <parameters>
+            <favorite-numbers>7</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>50.00</connection-fee>
+            <launch-date>2017-10-10</launch-date>
+        </parameters>
+    </tariff>
 
-    <!--<tariff id="ID-15">-->
-        <!--<name></name>-->
-        <!--<operator-name></operator-name>-->
-        <!--<payroll></payroll>-->
-        <!--<call-prices>-->
-            <!--<within-network></within-network>-->
-            <!--<other-networks></other-networks>-->
-            <!--<landline-phones></landline-phones>-->
-        <!--</call-prices>-->
-        <!--<sms-price></sms-price>-->
-        <!--<parameters>-->
-            <!--<favorite-numbers></favorite-numbers>-->
-            <!--<tariffing></tariffing>-->
-            <!--<connection-fee></connection-fee>-->
-        <!--</parameters>-->
-    <!--</tariff>-->
+    <tariff id="ID-15">
+        <name>Fidget</name>
+        <operator-name>Velcom</operator-name>
+        <payroll>9.95</payroll>
+        <call-prices>
+            <within-network>0.00</within-network>
+            <other-networks>0.17</other-networks>
+            <landline-phones>0.19</landline-phones>
+        </call-prices>
+        <sms-price>0.046</sms-price>
+        <parameters>
+            <favorite-numbers>3</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>5.00</connection-fee>
+            <launch-date>2018-04-24</launch-date>
+        </parameters>
+    </tariff>
 
-    <!--<tariff id="ID-16">-->
-        <!--<name></name>-->
-        <!--<operator-name></operator-name>-->
-        <!--<payroll></payroll>-->
-        <!--<call-prices>-->
-            <!--<within-network></within-network>-->
-            <!--<other-networks></other-networks>-->
-            <!--<landline-phones></landline-phones>-->
-        <!--</call-prices>-->
-        <!--<sms-price></sms-price>-->
-        <!--<parameters>-->
-            <!--<favorite-numbers></favorite-numbers>-->
-            <!--<tariffing></tariffing>-->
-            <!--<connection-fee></connection-fee>-->
-        <!--</parameters>-->
-    <!--</tariff>-->
+    <tariff id="ID-16">
+        <name>4G maxi</name>
+        <operator-name>MTS</operator-name>
+        <payroll>18.95</payroll>
+        <call-prices>
+            <within-network>0.003</within-network>
+            <other-networks>0.06</other-networks>
+            <landline-phones>0.09</landline-phones>
+        </call-prices>
+        <sms-price>0.045</sms-price>
+        <parameters>
+            <favorite-numbers>3</favorite-numbers>
+            <tariffing>60-sec</tariffing>
+            <connection-fee>5.00</connection-fee>
+            <launch-date>2018-01-18</launch-date>
+        </parameters>
+    </tariff>
 </tc:tariffs>

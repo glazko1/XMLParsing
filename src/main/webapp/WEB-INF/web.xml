@@ -1,3 +1,7 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <error-page>
+    <location>/WEB-INF/error.jsp</location>
+  </error-page>
 </web-app>

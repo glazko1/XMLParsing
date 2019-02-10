@@ -12,7 +12,6 @@ import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -26,6 +25,14 @@ public class XmlValidator {
 
     private XmlValidator() {}
 
+    /**
+     * Validates XML-document against the specified XSD-schema.
+     * @param xmlInputStream input stream of XML-document.
+     * @param xsdInputStream input stream of XSD-schema.
+     * @return {@code true} if XML-document is valid.
+     * @throws ValidationException if XML-document is not valid and there was an error
+     * while validating.
+     */
     public boolean validate(InputStream xmlInputStream, InputStream xsdInputStream) throws ValidationException {
         String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
         SchemaFactory factory = SchemaFactory.newInstance(language);

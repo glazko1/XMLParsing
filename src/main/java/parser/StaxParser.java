@@ -3,13 +3,21 @@ package parser;
 import builder.CallPricesBuilder;
 import builder.ParametersBuilder;
 import builder.TariffBuilder;
-import entity.*;
+import entity.CallPrices;
+import entity.Parameters;
+import entity.Tariff;
+import entity.TariffParameter;
+import entity.TariffingType;
 import exception.ParsingException;
 
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.events.*;
+import javax.xml.stream.events.Attribute;
+import javax.xml.stream.events.Characters;
+import javax.xml.stream.events.EndElement;
+import javax.xml.stream.events.StartElement;
+import javax.xml.stream.events.XMLEvent;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,6 +27,7 @@ import static entity.TariffParameter.CONNECTION_FEE;
 import static entity.TariffParameter.FAVORITE_NUMBERS;
 import static entity.TariffParameter.FREE;
 import static entity.TariffParameter.LANDLINE_PHONES;
+import static entity.TariffParameter.LAUNCH_DATE;
 import static entity.TariffParameter.NAME;
 import static entity.TariffParameter.OPERATOR_NAME;
 import static entity.TariffParameter.OTHER_NETWORKS;
@@ -73,6 +82,12 @@ public class StaxParser implements XmlParser {
         return tariffs;
     }
 
+    /**
+     * Matches beginning of element. Sets the type of this element into {@code
+     * currentParameter}.
+     * @param event XML-event found by event reader.
+     * @see TariffParameter
+     */
     private void startElement(XMLEvent event) {
         StartElement startElement = event.asStartElement();
         String qName = startElement.getName().getLocalPart();
@@ -114,11 +129,20 @@ public class StaxParser implements XmlParser {
             case "connection-fee":
                 currentParameter = CONNECTION_FEE;
                 break;
+            case "launch-date":
+                currentParameter = LAUNCH_DATE;
+                break;
             default:
                 break;
         }
     }
 
+    /**
+     * Gets information about element in {@code currentParameter}. Writes it into according
+     * builder. Sets {@code FREE} into current parameter when information was read.
+     * @param event XML-event found by event reader.
+     * @see TariffParameter
+     */
     private void characters(XMLEvent event) {
         Characters characters = event.asCharacters();
         String data = characters.getData();
@@ -159,12 +183,20 @@ public class StaxParser implements XmlParser {
             case CONNECTION_FEE:
                 parametersBuilder.withConnectionFee(Double.parseDouble(data));
                 break;
+            case LAUNCH_DATE:
+                parametersBuilder.withLaunchDate(data);
+                break;
             default:
                 break;
         }
         currentParameter = FREE;
     }
 
+    /**
+     * Matches end of head element (tariff). Builds call prices, parameters and tariff.
+     * Adds created tariff into tariff list.
+     * @param event XML-event found by event reader.
+     */
     private void endElement(XMLEvent event) {
         EndElement endElement = event.asEndElement();
         String name = endElement.getName().getLocalPart();

@@ -35,6 +35,7 @@ public class DomParserTest {
                 .hasFavoriteNumbers(5)
                 .withTariffingType(TariffingType.SEC_60)
                 .withConnectionFee(0)
+                .withLaunchDate("2017-02-10")
                 .build();
         Tariff tariff1 = new TariffBuilder("ID-1")
                 .withName("Comfort")
@@ -53,6 +54,7 @@ public class DomParserTest {
                 .hasFavoriteNumbers(3)
                 .withTariffingType(TariffingType.SEC_60)
                 .withConnectionFee(3)
+                .withLaunchDate("2017-05-19")
                 .build();
         Tariff tariff2 = new TariffBuilder("ID-2")
                 .withName("4G mini")

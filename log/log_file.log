@@ -1,0 +1,5 @@
+ERROR | 2019-02-10 17:04:16 | SAX error: The element type "parameters" must be terminated by the matching end-tag "</parameters>".
+ERROR | 2019-02-10 17:06:38 | SAX error: The element type "parameters" must be terminated by the matching end-tag "</parameters>".
+ERROR | 2019-02-10 20:02:17 | SAX error: schema_reference.4: Failed to read schema document 'null', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+ERROR | 2019-02-10 22:18:38 | SAX error: The element type "parameters" must be terminated by the matching end-tag "</parameters>".
+ERROR | 2019-02-10 22:23:09 | SAX error: The element type "parameters" must be terminated by the matching end-tag "</parameters>".

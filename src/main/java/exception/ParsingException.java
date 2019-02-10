@@ -2,6 +2,8 @@ package exception;
 
 public class ParsingException extends Throwable {
 
+    static final long serialVersionUID = 1248235679824812402L;
+
     public ParsingException() {
     }
 

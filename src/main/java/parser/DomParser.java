@@ -57,6 +57,15 @@ public class DomParser implements XmlParser {
         return tariffs;
     }
 
+    /**
+     * Parses one node (one tariff). Method is called by {@code parse()} method when
+     * a new node was found. Splits given node into id, name, operator's name, payroll,
+     * call prices (within network, to other networks, to landline phones), SMS prices
+     * and parameters (amount of favorite numbers, tariffing type, connection fee and
+     * launch date). Creates {@link Tariff} object with help of builders and adds it into
+     * a list of tariffs.
+     * @param node element to parse.
+     */
     private void parseNode(Node node) {
         Element element = (Element) node;
         String id = getId(element);
@@ -70,6 +79,7 @@ public class DomParser implements XmlParser {
         int favoriteNumbers = getFavoriteNumbers(element);
         TariffingType tariffingType = getTariffingType(element);
         double connectionFee = getConnectionFee(element);
+        String launchDate = getLaunchDate(element);
         CallPricesBuilder callPricesBuilder = new CallPricesBuilder();
         CallPrices callPrices = callPricesBuilder.withPriceWithinNetwork(withinNetwork)
                 .withPriceToOtherNetworks(otherNetworks)
@@ -79,6 +89,7 @@ public class DomParser implements XmlParser {
         Parameters parameters = parametersBuilder.hasFavoriteNumbers(favoriteNumbers)
                 .withTariffingType(tariffingType)
                 .withConnectionFee(connectionFee)
+                .withLaunchDate(launchDate)
                 .build();
         TariffBuilder tariffBuilder = new TariffBuilder(id);
         Tariff tariff = tariffBuilder.withName(name)
@@ -91,54 +102,111 @@ public class DomParser implements XmlParser {
         tariffs.add(tariff);
     }
 
+    /**
+     * @param element node with information about tariff.
+     * @param name name of element.
+     * @return element its by name.
+     */
     private String getElement(Element element, String name) {
         return element.getElementsByTagName(name)
                 .item(0)
                 .getTextContent();
     }
 
+    /**
+     * @param element node with information about tariff.
+     * @return tariff's id.
+     */
     private String getId(Element element) {
         return element.getAttribute("id");
     }
 
+    /**
+     * @param element node with information about tariff.
+     * @return tariff's name.
+     */
     private String getName(Element element) {
         return getElement(element, "name");
     }
 
+    /**
+     * @param element node with information about tariff.
+     * @return operator's name.
+     */
     private String getOperatorName(Element element) {
         return getElement(element, "operator-name");
     }
 
+    /**
+     * @param element node with information about tariff.
+     * @return tariff's payroll.
+     */
     private double getPayroll(Element element) {
         return Double.parseDouble(getElement(element, "payroll"));
     }
 
+    /**
+     * @param element node with information about tariff.
+     * @return tariff's call price within network.
+     */
     private double getWithinNetwork(Element element) {
         return Double.parseDouble(getElement(element, "within-network"));
     }
 
+    /**
+     * @param element node with information about tariff.
+     * @return tariff's call price to other networks.
+     */
     private double getOtherNetworks(Element element) {
         return Double.parseDouble(getElement(element, "other-networks"));
     }
 
+    /**
+     * @param element node with information about tariff.
+     * @return tariff's call price to landline phones.
+     */
     private double getLandLinePhones(Element element) {
         return Double.parseDouble(getElement(element, "landline-phones"));
     }
 
+    /**
+     * @param element node with information about tariff.
+     * @return tariff's SMS price.
+     */
     private double getSmsPrice(Element element) {
         return Double.parseDouble(getElement(element, "sms-price"));
     }
 
+    /**
+     * @param element node with information about tariff.
+     * @return tariff's amount of favorite numbers.
+     */
     private int getFavoriteNumbers(Element element) {
         return Integer.parseInt(getElement(element, "favorite-numbers"));
     }
 
+    /**
+     * @param element node with information about tariff.
+     * @return tariff's tariffing type.
+     */
     private TariffingType getTariffingType(Element element) {
         String tariffing = getElement(element, "tariffing");
         return "60-sec".equals(tariffing) ? TariffingType.SEC_60 : TariffingType.SEC_12;
     }
 
+    /**
+     * @param element node with information about tariff.
+     * @return tariff's connection fee.
+     */
     private double getConnectionFee(Element element) {
         return Double.parseDouble(getElement(element, "connection-fee"));
+    }
+
+    /**
+     * @param element node with information about tariff.
+     * @return tariff's launch date.
+     */
+    private String getLaunchDate(Element element) {
+        return getElement(element, "launch-date");
     }
 }

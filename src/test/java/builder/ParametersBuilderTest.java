@@ -17,10 +17,12 @@ public class ParametersBuilderTest {
     public void init() {
         readyBuilder.hasFavoriteNumbers(5)
                 .withTariffingType(TariffingType.SEC_60)
-                .withConnectionFee(0.99);
+                .withConnectionFee(0.99)
+                .withLaunchDate("2014-07-18");
         readyParameters.setFavoriteNumbers(5);
         readyParameters.setTariffingType(TariffingType.SEC_60);
         readyParameters.setConnectionFee(0.99);
+        readyParameters.setLaunchDate("2014-07-18");
     }
 
     @Test
@@ -48,6 +50,15 @@ public class ParametersBuilderTest {
         builder.withConnectionFee(4.95);
         //then
         assertEquals(builder.getConnectionFee(), 4.95);
+    }
+
+    @Test
+    public void withLaunchDate_correctParameters_true() {
+        //given
+        //when
+        builder.withLaunchDate("2017-11-07");
+        //then
+        assertEquals(builder.getLaunchDate(), "2017-11-07");
     }
 
     @Test

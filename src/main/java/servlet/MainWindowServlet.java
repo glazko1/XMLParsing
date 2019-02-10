@@ -49,6 +49,9 @@ public class MainWindowServlet extends HttpServlet {
             XmlParser parser = factory.getXmlParser(parserName);
             List<Tariff> tariffs = parser.parse(parsingInputStream);
             request.setAttribute("tariffs", tariffs);
+            String tableLanguage = request.getParameter("table-language");
+            String locale = "RUS".equals(tableLanguage) ? "text_ru_RU" : "text_en_EN";
+            request.setAttribute("locale", locale);
             request.getRequestDispatcher("WEB-INF/table.jsp").forward(request, response);
         } catch (ValidationException | ParsingException e) {
             LOGGER.error(e.getMessage());

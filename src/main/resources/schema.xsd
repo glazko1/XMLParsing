@@ -35,8 +35,8 @@
             <element name="payroll">
                 <simpleType>
                     <restriction base="double">
-                        <minInclusive value="0.01" />
-                        <maxInclusive value="80.0" />
+                        <minInclusive value="0" />
+                        <maxInclusive value="200.0" />
                     </restriction>
                 </simpleType>
             </element>
@@ -44,6 +44,7 @@
             <element name="sms-price">
                 <simpleType>
                     <restriction base="double">
+                        <minInclusive value="0" />
                         <maxInclusive value="0.5" />
                     </restriction>
                 </simpleType>
@@ -58,6 +59,7 @@
             <element name="within-network">
                 <simpleType>
                     <restriction base="double">
+                        <minInclusive value="0" />
                         <maxInclusive value="1.0" />
                     </restriction>
                 </simpleType>
@@ -65,6 +67,7 @@
             <element name="other-networks">
                 <simpleType>
                     <restriction base="double">
+                        <minInclusive value="0" />
                         <maxInclusive value="2.0" />
                     </restriction>
                 </simpleType>
@@ -79,6 +82,7 @@
                     <element name="landline-phones">
                         <simpleType>
                             <restriction base="double">
+                                <minInclusive value="0" />
                                 <maxInclusive value="3.0" />
                             </restriction>
                         </simpleType>
@@ -90,7 +94,7 @@
 
     <complexType name="Parameters">
         <sequence>
-            <element name="favorite-numbers" type="int" default="0" />
+            <element name="favorite-numbers" type="nonNegativeInteger" default="0" />
             <element name="tariffing">
                 <simpleType>
                     <restriction base="string">
@@ -102,10 +106,12 @@
             <element name="connection-fee">
                 <simpleType>
                     <restriction base="double">
-                        <maxInclusive value="25.0" />
+                        <minInclusive value="0" />
+                        <maxInclusive value="55.0" />
                     </restriction>
                 </simpleType>
             </element>
+            <element name="launch-date" type="date" />
         </sequence>
     </complexType>
 </schema>

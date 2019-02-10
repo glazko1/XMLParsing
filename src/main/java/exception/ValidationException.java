@@ -2,6 +2,8 @@ package exception;
 
 public class ValidationException extends Throwable {
 
+    static final long serialVersionUID = 7240150642895316445L;
+
     public ValidationException() {
     }
 

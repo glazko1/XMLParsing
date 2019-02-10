@@ -7,7 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
+<c:set var="locale" value="${locale}" />
+<fmt:bundle basename="${locale}">
 <head>
     <title>Parsing Result</title>
 </head>
@@ -15,20 +18,21 @@
 <table border="1" cellpadding="4" cellspacing="0">
     <tr>
         <th align=center rowspan="2">ID</th>
-        <th align=center rowspan="2">Name</th>
-        <th align=center rowspan="2">Operator name</th>
-        <th align=center rowspan="2">Payroll</th>
-        <th align="center" colspan="3">Call prices</th>
-        <th align=center rowspan="2">SMS price</th>
-        <th align="center" colspan="3">Parameters</th>
+        <th align=center rowspan="2"><fmt:message key = "table.name" /></th>
+        <th align=center rowspan="2"><fmt:message key = "table.operator_name" /></th>
+        <th align=center rowspan="2"><fmt:message key = "table.payroll" /></th>
+        <th align=center colspan="3"><fmt:message key = "table.call_prices" /></th>
+        <th align=center rowspan="2"><fmt:message key = "table.sms_price" /></th>
+        <th align=center colspan="4"><fmt:message key = "table.parameters" /></th>
     </tr>
     <tr>
-        <th align=center>Within network</th>
-        <th align=center>Other networks</th>
-        <th align=center>Landline phones</th>
-        <th align=center>Favorite numbers</th>
-        <th align=center>Tariffing</th>
-        <th align=center>Connection fee</th>
+        <th align=center><fmt:message key = "table.within_network" /></th>
+        <th align=center><fmt:message key = "table.other_networks" /></th>
+        <th align=center><fmt:message key = "table.landline_phones" /></th>
+        <th align=center><fmt:message key = "table.favorite_numbers" /></th>
+        <th align=center><fmt:message key = "table.tariffing" /></th>
+        <th align=center><fmt:message key = "table.connection_fee" /></th>
+        <th align=center><fmt:message key = "table.launch_date" /></th>
     </tr>
     <c:forEach items="${tariffs}" var="tariff">
         <tr>
@@ -41,10 +45,12 @@
             <td align=center>${tariff.callPrices.landlinePhones}</td>
             <td align=center>${tariff.smsPrice}</td>
             <td align=center>${tariff.parameters.favoriteNumbers}</td>
-            <td align=center>${tariff.parameters.tariffingType}</td>
+            <td align=center>${tariff.parameters.tariffingType}<fmt:message key = "table.seconds" /></td>
             <td align=center>${tariff.parameters.connectionFee}</td>
+            <td align=center>${tariff.parameters.launchDate}</td>
         </tr>
     </c:forEach>
 </table>
 </body>
+</fmt:bundle>
 </html>

@@ -15,6 +15,12 @@ public class XmlParserFactory {
 
     private XmlParserFactory() {}
 
+    /**
+     * Returns XML parsers in accordance with name given as parameter. Can return
+     * object of any class implementing interface {@link XmlParser}.
+     * @param name name of XML parser to get.
+     * @return XML parser with given name.
+     */
     public XmlParser getXmlParser(String name) {
         switch (name) {
             case "DOM":

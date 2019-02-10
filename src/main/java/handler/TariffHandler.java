@@ -17,6 +17,7 @@ import java.util.List;
 import static entity.TariffParameter.CONNECTION_FEE;
 import static entity.TariffParameter.FAVORITE_NUMBERS;
 import static entity.TariffParameter.LANDLINE_PHONES;
+import static entity.TariffParameter.LAUNCH_DATE;
 import static entity.TariffParameter.NAME;
 import static entity.TariffParameter.OPERATOR_NAME;
 import static entity.TariffParameter.OTHER_NETWORKS;
@@ -31,7 +32,7 @@ public class TariffHandler extends DefaultHandler {
     private TariffBuilder tariffBuilder;
     private CallPricesBuilder callPricesBuilder;
     private ParametersBuilder parametersBuilder;
-    private StringBuilder data;
+    private StringBuilder data = new StringBuilder();
 
     private TariffParameter currentParameter;
 
@@ -78,6 +79,9 @@ public class TariffHandler extends DefaultHandler {
             case "connection-fee":
                 currentParameter = CONNECTION_FEE;
                 break;
+            case "launch-date":
+                currentParameter = LAUNCH_DATE;
+                break;
             default:
                 break;
         }
@@ -123,6 +127,9 @@ public class TariffHandler extends DefaultHandler {
             case CONNECTION_FEE:
                 parametersBuilder.withConnectionFee(Double.parseDouble(data.toString()));
                 break;
+            case LAUNCH_DATE:
+                parametersBuilder.withLaunchDate(data.toString().trim());
+                break;
             default:
                 break;
         }
@@ -134,5 +141,19 @@ public class TariffHandler extends DefaultHandler {
             Tariff tariff = tariffBuilder.build();
             tariffs.add(tariff);
         }
+    }
+
+    public TariffParameter getCurrentParameter() { return currentParameter; }
+
+    public String getData() {
+        return data.toString();
+    }
+
+    public TariffBuilder getTariffBuilder() {
+        return tariffBuilder;
+    }
+
+    public void setTariffBuilder(TariffBuilder tariffBuilder) {
+        this.tariffBuilder = tariffBuilder;
     }
 }

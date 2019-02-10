@@ -35,6 +35,7 @@ public class SaxParserTest {
                 .hasFavoriteNumbers(1)
                 .withTariffingType(TariffingType.SEC_60)
                 .withConnectionFee(0)
+                .withLaunchDate("2018-01-07")
                 .build();
         Tariff tariff1 = new TariffBuilder("ID-3")
                 .withName("Social")
@@ -53,6 +54,7 @@ public class SaxParserTest {
                 .hasFavoriteNumbers(3)
                 .withTariffingType(TariffingType.SEC_60)
                 .withConnectionFee(4)
+                .withLaunchDate("2016-11-29")
                 .build();
         Tariff tariff2 = new TariffBuilder("ID-4")
                 .withName("XL")
